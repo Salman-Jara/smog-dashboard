@@ -1,5 +1,7 @@
 ## Smog Dashboard
 
+deployment: https://smog-dashboard.vercel.app/
+
 Stay up to date with latest Air Quality and weather information of your city with the Smog Dashboard. Talk to AI Powered chatbot on advice tailored to your specific geolocation and air quality, and get the latest news about smog in South Asia.
 
 ### Technical Details
