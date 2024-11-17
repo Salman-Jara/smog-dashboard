@@ -29,28 +29,28 @@ const AQIChart = ({ currentAqi }: AQIChartProps) => {
       <BarChart data={data}>
         <XAxis dataKey="range" />
         <YAxis hide />
-        <Tooltip
-          formatter={(value: any, name: string | undefined, props: any) => {
-            const impact = props.payload?.impact || 'Unknown';
-            return [impact];  // Only return the 'impact' value
-          }}
-          contentStyle={{
-            backgroundColor: '#333',  // Dark background for the tooltip
-            borderRadius: '5px',  // Rounded corners
-            padding: '10px',  // Padding inside the tooltip
-            boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',  // Subtle shadow
-            color: '#fff',  // Text color
-            maxWidth: '300px',  // Restrict width of the tooltip
-            whiteSpace: 'normal',  // Allow text to wrap
-            overflow: 'hidden',  // Prevent text from overflowing the container
-            textOverflow: 'ellipsis',  // Add ellipsis if text overflows
-          }}
-          
-          itemStyle={{
-            color: '#FFFFFF',  
-            fontWeight: 'bold',  
-          }}
-        />
+      <Tooltip<any, string | number>
+        formatter={(value: any, name: string | number, props: any) => {
+          const impact = props.payload ? props.payload.impact || 'Unknown' : 'Unknown';
+          return [impact];
+        }}
+        contentStyle={{
+          backgroundColor: '#333', 
+          borderRadius: '5px',  
+          padding: '10px', 
+          boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',  
+          color: '#fff', 
+          maxWidth: '300px',  
+          whiteSpace: 'normal',  
+          overflow: 'hidden', 
+          textOverflow: 'ellipsis',  
+        }}
+        
+        itemStyle={{
+          color: '#FFFFFF',  
+          fontWeight: 'bold',  
+        }}
+      />
         <Bar dataKey="aqiStart" fill="#8884d8" barSize={300}>
           {data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={getBarColor(entry)} />
