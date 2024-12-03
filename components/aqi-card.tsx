@@ -69,7 +69,8 @@ const AQICard = ({ city, onSelect}: AQICardProps) => {
     if (data) {
       setImageName(data.weatherIcon || "01d");
       
-      if (data.aqi <= 50) {
+      if (data.aqi <= 50) 
+        {
         setCondition({ description: "Good air quality", icon: faLeaf });
       } else if (data.aqi <= 100) {
         setCondition({ description: "Moderate air quality", icon: faHeadSideCough });
