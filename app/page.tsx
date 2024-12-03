@@ -7,7 +7,6 @@ import ImageSlideshow from "@/components/image-slideshow";
 import SearchBar from "@/components/searchbar";
 import Image from "next/image";
 
-
 export default function Home() {
   const [selectedCity, setSelectedCity] = useState<string>("");
   const [aqiValue, setAQIValue] = useState<number>(0)
