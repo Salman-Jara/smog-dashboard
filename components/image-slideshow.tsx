@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardTitle } from "@/components/ui/card";
 import Link from "next/link";
 import React from "react";
-import { useNewsData } from "@/app/api/fetchNewsData/route";
+import { useNewsData } from "@/app/api/fetchNewsData/fetchNews";
 
 const ImageSlideshow = () => {
 

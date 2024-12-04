@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLeaf, faHeadSideCough, faHeadSideMask, faMaskVentilator } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import { Badge } from "@/components/ui/badge"
-import { useAQIData } from '@/app/api/fetchAqiData/route';
+import { useAQIData } from '@/app/api/fetchAqiData/fetchAqi';
 
 const cityStateMap: Record<string, string> = {
   "Lahore": "punjab",

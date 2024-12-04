@@ -16,7 +16,7 @@ const fetchAQIData = async ({queryKey}: QueryParameter) => {
   const response = await fetch(url_query);
   const data = await response.json();
 
-  if(data.status === "success") {
+  if(data.status === "success"){
     return {
       aqi: parseInt(data.data.current.pollution.aqius, 10),
       weatherIcon: data.data.current.weather.ic,
