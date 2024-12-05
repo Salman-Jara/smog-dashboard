@@ -1,14 +1,15 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import AQICard from "@/components/aqi-card";
 import GraphCard from "@/components/graph-card";
 import ImageSlideshow from "@/components/image-slideshow";
 import SearchBar from "@/components/searchbar";
 import Image from "next/image";
+import { useAQIData } from "./api/fetchAqiData/fetchAqi";
 
 export default function Home() {
-  const [selectedCity, setSelectedCity] = useState<string>("");
+  const [selectedCity, setSelectedCity] = useState<string>("Lahore");
   const [aqiValue, setAQIValue] = useState<number>(0)
 
   const handleCitySelect = (city: string) => {
@@ -16,11 +17,14 @@ export default function Home() {
     localStorage.setItem('city', city)
   };
 
-  const handleSetAQI = (aqi: number) => {
-    console.log("AQIVALUE TYPE: ", typeof(aqi))
-    localStorage.setItem('aqi', String(aqi))
-    setAQIValue(aqi)
-  }
+  const { data, isLoading, error } = useAQIData(selectedCity);
+
+  useEffect(() => {
+    if (data && data.aqi !== undefined) {
+      console.log("AQI Request sent for:", selectedCity);
+      setAQIValue(data.aqi);
+    }
+  }, [data]);
 
   return (
   
@@ -37,7 +41,7 @@ export default function Home() {
           <SearchBar onCitySelect={handleCitySelect} />
         </div>
         <div className="grid grid-cols-2 gap-5 w-full">
-            <AQICard city={selectedCity} onSelect={handleSetAQI} />
+            <AQICard city={selectedCity} />
             <ImageSlideshow />
           <div className="col-span-2">
             <GraphCard aqiNumber={aqiValue}/>

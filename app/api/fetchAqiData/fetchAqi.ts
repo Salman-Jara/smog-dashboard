@@ -1,4 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
+import { cityStateMap } from "@/app/cityState";
 
 type QueryParameter = {
   queryKey: any
@@ -6,12 +7,10 @@ type QueryParameter = {
 
 const fetchAQIData = async ({queryKey}: QueryParameter) => {
   const[_key, parameters] = queryKey;
-  const searchParams = new URLSearchParams(parameters.split('?')[1]);
-  const city = searchParams.get("city");
-  const state = searchParams.get("state");
-  const country = searchParams.get("country");
+  const city = parameters;
+  const state = cityStateMap[city]
   const apiKey = process.env.NEXT_PUBLIC_AIRVISUAL_API_KEY; 
-  const url_query = `http://api.airvisual.com/v2/city?city=${city}&state=${state}&country=${country}&key=${apiKey}`;
+  const url_query = `http://api.airvisual.com/v2/city?city=${city}&state=${state}&country=Pakistan&key=${apiKey}`;
   
   const response = await fetch(url_query);
   const data = await response.json();
